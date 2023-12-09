@@ -4,15 +4,15 @@ import java.io.IOException;
 import java.util.HashSet;
 public class CsvReader {
 
-    HashSet<Character> hs = new HashSet<>();
+    HashSet<Characters> hs = new HashSet<>();
     String line = "";
     public boolean readFile(String fileName){
-        //read each line from input and pass as the String as a parameter for Character constructor
+        //read each line from input and pass as the String as a parameter for Characters constructor
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             br.readLine();
             while ((line = br.readLine()) != null) {
-                Character ch = new Character(line);
+                Characters ch = new Characters(line);
                 hs.add(ch);
             }
         }
@@ -27,7 +27,7 @@ public class CsvReader {
     }
 
 
-    public HashSet<Character> getCharacterSet(){
+    public HashSet<Characters> getCharactersSet(){
         return hs;
     }
 }

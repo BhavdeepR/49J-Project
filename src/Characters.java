@@ -1,4 +1,6 @@
-public class Character {
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public class Characters implements Comparable<Characters> {
     // need to retrieve name, hp, and is_legendary from each line
     // name is column 31
     // hp is column 29
@@ -6,22 +8,17 @@ public class Character {
     private String name;
     private int hp;
     private int is_legendary;
-    public Character(String line){
+    public Characters(String line){
 
-        String[] line_array = line.split(",");
+        String[] line_array = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
         int length = line_array.length;
-        int index = 29;
-        for(int i = 0; i <= length; i++){
-            if(line_array[i].isEmpty()){
-                index
-            }
-        }
-        name = line_array[31];
-        if (line_array[29].isEmpty() || !line_array[29].matches("\\d+")) {
+
+        name = line_array[30];
+        if (line_array[28].isEmpty() || !line_array[28].matches("\\d+")) {
             // Handle the case when the value is empty or not a valid integer
             hp = 0; // Set a default value or handle it accordingly
         } else {
-            hp = Integer.parseInt(line_array[29]);
+            hp = Integer.parseInt(line_array[28]);
         }
 
 
@@ -37,6 +34,10 @@ public class Character {
     }
     public int getIs_legendary(){
         return is_legendary;
+    }
+
+    public int compareTo(Characters that){
+        return this.getName().compareTo(that.getName());
     }
 
 
